@@ -1,8 +1,8 @@
 import tweepy, sys
 
 class StreamController:
-	def __init__(self, uname, pword, nsamples = 1):
-		self.n = 10#nsamples
+	def __init__(self, uname, pword):
+		self.n = 10
 		self.handler = StreamHandler(self)
 		self.stream = tweepy.Stream(uname, pword, self.handler, timeout=None)
 		self.ctr = 0
@@ -31,11 +31,10 @@ class StreamHandler(tweepy.StreamListener):
 			self.controller.stop_sample()
 
 if __name__ == "__main__":
-	if len(sys.argv) < 4:
-		print "usage: tweepstream.py  <username> <password> <numsamples>"
+	if len(sys.argv) < 3:
+		print "usage: tweepstream.py  <username> <password>"
 		sys.exit()
 	uname = sys.argv[1]
 	pword = sys.argv[2]
-	nsamp = sys.argv[3]
-	twit = StreamController(uname, pword, nsamp)
+	twit = StreamController(uname, pword)
 	twit.start_sample()
