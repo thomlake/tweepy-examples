@@ -5,7 +5,6 @@ class StreamController:
 		self.n = 10#nsamples
 		self.handler = StreamHandler(self)
 		self.stream = tweepy.Stream(uname, pword, self.handler, timeout=None)
-
 		self.ctr = 0
 		self.tweetlist = []
 	
